@@ -26,9 +26,8 @@
 </head>
 <body>
 
-    <!-- Приветственный баннер с твоим ником -->
     <div class="welcome-banner">
-        <h1>Здарова, братулец! 👋</h1>
+        <h1>Здорова, братулец! 👋</h1>
         <p>Это официальный генератор шаблонов от #Паталагиста</p>
     </div>
 
@@ -38,39 +37,22 @@
         <div class="columns">
             <div>
                 <h3>1. Начало (Обращение):</h3>
-                <textarea id="part1">Ты
-Слышь ты
-Да ты
-Эй ты</textarea>
+                <textarea id="part1" placeholder="Введи варианты обращения..."></textarea>
             </div>
             <div>
                 <h3>2. Существительное (Кто?):</h3>
-                <textarea id="part2">гусь
-черт
-хуесос
-пидорас
-пес
-олень</textarea>
+                <textarea id="part2" placeholder="Введи существительные..."></textarea>
             </div>
         </div>
 
         <div class="columns">
             <div>
                 <h3>3. Прилагательное (Какой?):</h3>
-                <textarea id="part3">ебаный
-облезлый
-шныряющий
-позорный
-гнойный
-тупорылый</textarea>
+                <textarea id="part3" placeholder="Введи прилагательные..."></textarea>
             </div>
             <div>
                 <h3>4. Концовка (Что сделаю?):</h3>
-                <textarea id="part4">ебал тебя в рот
-рот твой топтал
-за базар ответишь
-нахрен иди
-в глаза мне смотри</textarea>
+                <textarea id="part4" placeholder="Введи концовки фраз..."></textarea>
             </div>
         </div>
 
@@ -106,7 +88,15 @@
                 let p4 = getRandomWord('part4');
                 
                 let sentence = `${p1} ${p2} ${p3}, ${p4}`.replace(/\s+/g, ' ').trim();
-                finalOutput.push(sentence);
+                if (sentence.length > 1) {
+                    finalOutput.push(sentence);
+                }
+            }
+            
+            if (finalOutput.length === 0) {
+                document.getElementById('resultText').innerText = "Заполни поля словами перед генерацией!";
+                document.getElementById('copyBtn').style.display = "none";
+                return;
             }
             
             document.getElementById('resultText').innerText = finalOutput.join('\n');
